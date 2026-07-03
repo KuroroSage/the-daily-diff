@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Daily Diff — 2026-07-03</title>
+<meta name="description" content="Claude Code 2.1.198–199: subagents go background-by-default, Claude in Chrome GA — and 6 more items for AI-agent builders. 1 executable.">
+<meta property="og:title" content="The Daily Diff — 2026-07-03">
+<meta property="og:description" content="Claude Code 2.1.198–199: subagents go background-by-default, Claude in Chrome GA — and 6 more items for AI-agent builders. 1 executable.">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary">
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #0d1117; color: #e6edf3;
+         font: 15px/1.55 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+  a { color: #58a6ff; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 40px 20px 80px; }
+  header h1 { font-size: 22px; margin: 0 0 2px; }
+  header .date { color: #8b949e; margin: 0 0 4px; }
+  header .tagline { color: #8b949e; font-size: 13px; margin: 0; }
+  .verified { display: inline-block; margin-top: 14px; padding: 3px 10px; border: 1px solid #238636;
+              border-radius: 999px; color: #3fb950; font-size: 12px; }
+  .item { margin: 34px 0; padding-left: 16px; border-left: 2px solid #21262e; }
+  .item h2 { font-size: 16px; margin: 0 0 6px; }
+  .item h2 a { color: #e6edf3; }
+  .num { color: #8b949e; }
+  .tag { font-size: 11px; padding: 1px 7px; border-radius: 4px; border: 1px solid; margin-right: 8px;
+         vertical-align: 2px; letter-spacing: .5px; }
+  .why { margin: 6px 0; color: #c9d1d9; }
+  .src { font-size: 12px; color: #8b949e; }
+  .action { margin: 12px 0 0; padding: 12px 14px; background: #161b22; border: 1px solid #21262e;
+            border-radius: 8px; font-size: 13px; }
+  .action .atitle { color: #d29922; font-weight: 600; }
+  .action .meta { color: #8b949e; margin-top: 6px; }
+  .action .warn { color: #d29922; margin-top: 6px; }
+  .action .how { color: #8b949e; margin-top: 8px; border-top: 1px solid #21262e; padding-top: 8px; }
+  code { background: #161b22; border: 1px solid #21262e; border-radius: 4px; padding: 1px 6px; font-size: 13px; }
+  .install { margin-top: 56px; padding: 18px; background: #161b22; border: 1px solid #21262e; border-radius: 8px; }
+  .install h3 { margin: 0 0 8px; font-size: 14px; }
+  .install p { margin: 6px 0; font-size: 13px; color: #c9d1d9; }
+  footer { margin-top: 40px; color: #8b949e; font-size: 12px; }
+  footer .trust { border-left: 2px solid #238636; padding-left: 12px; margin: 16px 0; }
+  .archive { margin-top: 24px; font-size: 13px; }
+  .archive a { margin-right: 14px; }
+  @media (max-width: 480px) { .wrap { padding: 24px 14px 60px; } }
+</style>
+</head>
+<body><div class="wrap">
+<header>
+  <h1>📰 The Daily Diff</h1>
+  <p class="date">Friday, July 3, 2026</p>
+  <p class="tagline">The morning brief that lives in your coding agent — with recommendations it can apply.</p>
+  <span class="verified" title="This page was generated only after the edition's Ed25519 signatures verified against the client trust root.">✓ signed edition · 7 items · 1 actions</span>
+</header>
+<article class="item" id="199f1aeef5f0463c">
+<h2><span class="num">1.</span> <span class="tag" style="color:#58a6ff;border-color:#58a6ff">RELEASE</span> <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.199" rel="noopener">Claude Code 2.1.198–199: subagents go background-by-default, Claude in Chrome GA</a></h2>
+<p class="why">You are on 2.1.197 — .198 flips subagents to background-by-default and fires Notification hooks (agent_needs_input / agent_completed) when they need you; .199 adds stacked /skill invocations and fast-fail SSL errors.</p>
+<div class="src">source: <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.199" rel="noopener">github.com</a></div>
+<div class="action" id="act_2026-07-03_bg-agent-notification-hook">
+<div class="atitle">⚡ Notification-hook example for background agents (Claude Code ≥2.1.198)</div>
+<div class="meta">type: copy_snippet · target: snippet (saved locally / clipboard)</div>
+<div class="meta">provenance: authored editor:jo · reviewed editor:jo</div>
+<div class="warn">⚠ self-reviewed (dogfood build) — no second human has checked this action</div>
+<div class="how">Executable recommendation. In the terminal it's previewed as a diff against your real config and applied only on explicit confirm — always reversible. This page just describes it.</div>
+</div>
+</article>
+<article class="item" id="3080638180a1f987">
+<h2><span class="num">2.</span> <span class="tag" style="color:#58a6ff;border-color:#58a6ff">RELEASE</span> <a href="https://github.com/anthropics/claude-agent-sdk-typescript/releases/tag/v0.3.199" rel="noopener">Agent SDK (TS) 0.3.198–199: canUseTool gets requestId; shadowing warning</a></h2>
+<p class="why">If you gate tools with canUseTool, .198 now warns when allowedTools or bypassPermissions silently shadow the callback, and .199 adds requestId so out-of-band permission responses can be correlated.</p>
+<div class="src">source: <a href="https://github.com/anthropics/claude-agent-sdk-typescript/releases/tag/v0.3.199" rel="noopener">github.com</a></div>
+</article>
+<article class="item" id="0e493a24c469bf09">
+<h2><span class="num">3.</span> <span class="tag" style="color:#58a6ff;border-color:#58a6ff">RELEASE</span> <a href="https://github.com/anthropics/anthropic-sdk-typescript/releases/tag/sdk-v0.110.0" rel="noopener">Anthropic TS SDK 0.110.0 adds agent-memory beta header</a></h2>
+<p class="why">0.110 lands an agent-memory-2026-07-22 beta header — a new memory surface is being staged in the API; worth watching before you build your own persistence layer.</p>
+<div class="src">source: <a href="https://github.com/anthropics/anthropic-sdk-typescript/releases/tag/sdk-v0.110.0" rel="noopener">github.com</a></div>
+</article>
+<article class="item" id="4d3291c25d56323b">
+<h2><span class="num">4.</span> <span class="tag" style="color:#3fb950;border-color:#3fb950">TOOL</span> <a href="https://simonwillison.net/2026/Jul/2/llm-coding-agent" rel="noopener">Willison ships llm-coding-agent 0.1a0</a></h2>
+<p class="why">His LLM library has grown into an agent framework; this 0.1a0 coding agent is a compact, readable reference for what a minimal harness actually needs.</p>
+<div class="src">source: <a href="https://simonwillison.net/2026/Jul/2/llm-coding-agent" rel="noopener">simonwillison.net</a></div>
+</article>
+<article class="item" id="78397f033eb7a898">
+<h2><span class="num">5.</span> <span class="tag" style="color:#bc8cff;border-color:#bc8cff">MCP</span> <a href="https://github.com/modelcontextprotocol/typescript-sdk/releases/tag/%40modelcontextprotocol/server%402.0.0-beta.2" rel="noopener">MCP TypeScript SDK 2.0.0-beta.2 dual-publishes CJS + ESM</a></h2>
+<p class="why">Every 2.0-beta package now ships .cjs alongside .mjs — if your MCP server still builds on the 1.x SDK, the 2.0 migration story just got less breaking for CJS consumers.</p>
+<div class="src">source: <a href="https://github.com/modelcontextprotocol/typescript-sdk/releases/tag/%40modelcontextprotocol/server%402.0.0-beta.2" rel="noopener">github.com</a></div>
+</article>
+<article class="item" id="80d2225d9c668acb">
+<h2><span class="num">6.</span> <span class="tag" style="color:#bc8cff;border-color:#bc8cff">SKILL</span> <a href="https://github.com/browser-use/browser-use/releases/tag/0.13.3" rel="noopener">Browser Use 0.13.3: CLI 3.0 and one-command skill install</a></h2>
+<p class="why">New browser-use skill command installs its skill straight into Claude Code, Codex, Cursor and friends — a sign of skills becoming the cross-agent distribution unit.</p>
+<div class="src">source: <a href="https://github.com/browser-use/browser-use/releases/tag/0.13.3" rel="noopener">github.com</a></div>
+</article>
+<article class="item" id="30397997e549c195">
+<h2><span class="num">7.</span> <span class="tag" style="color:#d29922;border-color:#d29922">TECHNIQUE</span> <a href="https://arxiv.org/abs/2607.02357v1" rel="noopener">Deep cut: agent-skill malware that evades static scanners</a></h2>
+<p class="why">Skills are becoming the cross-agent install unit (see Browser Use above) — this paper shows skill malware slipping past static scans and proposes dynamic detection. Audit what you install; pin what you trust.</p>
+<div class="src">source: <a href="https://arxiv.org/abs/2607.02357v1" rel="noopener">arxiv.org</a></div>
+</article>
+<div class="install">
+  <h3>This brief reads itself into your terminal</h3>
+  <p>In the client, these items are filtered against your local setup (your config never leaves your machine) and each action becomes a previewable, reversible diff.</p>
+  <p>Public beta soon. Until then, the whole product — client, signed feed, and trust model — builds from source in the repo.</p>
+</div>
+<footer>
+  <div class="trust">We never ship code. We ship diffs to a known set of config files, signed, previewed locally
+  against your real setup, applied only when you say yes, and reversible with one command.</div>
+  <div class="archive">editions: <span>2026-07-03</span> <a href="2026-07-02.html">2026-07-02</a></div>
+</footer></div></body>
+</html>
