@@ -19,8 +19,10 @@ jobs:
         run: |
           set -euo pipefail
           BASE="https://kurorosage.github.io/the-daily-diff"
-          TODAY="$(date -u +%F)"
-          DAYPATH="$(date -u +%Y/%m/%d)"
+          # Editions are dated in the publisher's timezone — check in that
+          # clock, so a manual run late in the UTC evening can't false-alarm.
+          TODAY="$(TZ=America/Santiago date +%F)"
+          DAYPATH="$(TZ=America/Santiago date +%Y/%m/%d)"
           BUST="probe=$(date +%s)"
           echo "checking $BASE/feed/$DAYPATH/feed.json"
           curl -sf "$BASE/feed/$DAYPATH/feed.json?$BUST" -o feed.json || {
