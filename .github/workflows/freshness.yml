@@ -1,0 +1,30 @@
+# Dead-man switch (spec §6 operational honesty): every weekday, verify the
+# public mirror is actually serving TODAY's edition. The product's failure
+# mode is silence — the client teaser is silent by design, so this workflow
+# is the one thing that screams. A red run here emails the founder.
+name: edition-freshness
+on:
+  schedule:
+    - cron: "0 15 * * 1-5" # 15:00 UTC weekdays — edition target is 14:00 UTC
+  workflow_dispatch:
+
+jobs:
+  fresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: today's edition is live and dated correctly
+        run: |
+          set -euo pipefail
+          BASE="https://kurorosage.github.io/the-daily-diff"
+          TODAY="$(date -u +%F)"
+          DAYPATH="$(date -u +%Y/%m/%d)"
+          echo "checking $BASE/feed/$DAYPATH/feed.json"
+          curl -sf "$BASE/feed/$DAYPATH/feed.json" -o feed.json || {
+            echo "::error::NO EDITION for $TODAY on the public mirror — the Daily Diff is dark"; exit 1; }
+          curl -sf "$BASE/feed/$DAYPATH/feed.json.sig" -o /dev/null || {
+            echo "::error::edition $TODAY has no signature file on the mirror"; exit 1; }
+          grep -q "\"date\": \"$TODAY\"" feed.json || {
+            echo "::error::feed.json served for $TODAY carries a different date"; exit 1; }
+          curl -sf "$BASE/revocations.json" -o /dev/null || {
+            echo "::error::revocations.json missing from the mirror — clients fail closed"; exit 1; }
+          echo "✓ $TODAY edition live, signed, revocations present"
