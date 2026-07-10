@@ -1,0 +1,70 @@
+{
+  "schema": "dailydiff.feed/v1",
+  "date": "2026-07-09",
+  "published_at": "2026-07-10T01:19:57.872Z",
+  "items": [
+    {
+      "id": "33a82b9cb2611321",
+      "type": "release",
+      "title": "Codex CLI 0.144.0 adds 'writes' approval mode; 0.144.1 patches the installer",
+      "why": "Go straight to 0.144.1 — you get 0.144.0's new writes approval mode (declared reads auto-allowed, writes prompt) and MCP auth prompts on by default, plus the standalone install-script fix.",
+      "url": "https://github.com/openai/codex/releases/tag/rust-v0.144.1",
+      "source": "changelog",
+      "relevance": [
+        "tool:codex"
+      ]
+    },
+    {
+      "id": "e19fbb75eb44457e",
+      "type": "model",
+      "title": "OpenAI ships GPT-5.6 GA: Sol, Terra, Luna across API, ChatGPT and Codex",
+      "why": "Sol, Terra and Luna hit the API at $5/$2.50/$1 per 1M input with Programmatic Tool Calling and a multi-agent beta — rerun your own evals before switching defaults: the Fable-beating numbers are OpenAI's own, and Willison's hands-on still reaches for Claude on hard coding.",
+      "url": "https://openai.com/index/gpt-5-6",
+      "source": "openai blog",
+      "relevance": []
+    },
+    {
+      "id": "414c9891d5ccd917",
+      "type": "release",
+      "title": "Claude Code 2.1.200–.205: questions wait for you, 'default' mode is now Manual",
+      "why": "Since .199: AskUserQuestion now waits instead of auto-continuing (idle timeout is opt-in via /config), 'default' permission mode is renamed Manual, .203 fixes the macOS 15–20s session-open stall, and .205 fixes a Windows worktree removal that could delete files outside the worktree — update.",
+      "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.205",
+      "source": "changelog",
+      "relevance": [
+        "tool:claude-code"
+      ]
+    },
+    {
+      "id": "bf48e37fdd2ad870",
+      "type": "mcp",
+      "title": "MCP TS SDK 2.0.0-beta.3: runtime-neutral auth, OAuth discovery, Zod elicitation",
+      "why": "Bearer auth and OAuth discovery no longer need Express — the same code now runs on Cloudflare Workers, Deno and Bun, elicit() takes a Zod schema directly, and non-JSON POSTs now get 415 if you compose custom transports.",
+      "url": "https://github.com/modelcontextprotocol/typescript-sdk/releases/tag/%40modelcontextprotocol/server%402.0.0-beta.3",
+      "source": "changelog",
+      "relevance": [
+        "lang:ts"
+      ]
+    },
+    {
+      "id": "98cd957ce47ae806",
+      "type": "release",
+      "title": "Agent SDK (TS) 0.3.200–.205: interrupt receipts, background-task level events",
+      "why": "interrupt() now returns a typed receipt of still-queued messages, background_tasks_changed reports live tasks as a level instead of started/notification edge pairs, and .202 adds parent_agent_id for reconstructing agent trees — feature-detect via system/init before relying on the new events.",
+      "url": "https://github.com/anthropics/claude-agent-sdk-typescript/releases/tag/v0.3.205",
+      "source": "changelog",
+      "relevance": [
+        "lang:ts"
+      ]
+    },
+    {
+      "id": "48eb2f626f34cc7b",
+      "type": "model",
+      "title": "Meta opens Muse Spark 1.1 API: agentic claims, no benchmarks, no harness support",
+      "why": "Meta's first Spark API ships with agentic claims but no benchmarks, no pricing and no coding-harness support — the only way to poke it today is Willison's llm-meta-ai plugin; nothing to change in your setup.",
+      "url": "https://simonwillison.net/2026/Jul/9/muse-spark-1-1",
+      "source": "simonwillison.net",
+      "relevance": []
+    }
+  ],
+  "actions": []
+}

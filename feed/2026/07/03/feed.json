@@ -1,0 +1,104 @@
+{
+  "schema": "dailydiff.feed/v1",
+  "date": "2026-07-03",
+  "published_at": "2026-07-03T03:30:45.152Z",
+  "items": [
+    {
+      "id": "199f1aeef5f0463c",
+      "type": "release",
+      "title": "Claude Code 2.1.198–199: subagents go background-by-default, Claude in Chrome GA",
+      "why": "You are on 2.1.197 — .198 flips subagents to background-by-default and fires Notification hooks (agent_needs_input / agent_completed) when they need you; .199 adds stacked /skill invocations and fast-fail SSL errors.",
+      "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.199",
+      "source": "changelog",
+      "relevance": [
+        "tool:claude-code"
+      ],
+      "action_id": "act_2026-07-03_bg-agent-notification-hook"
+    },
+    {
+      "id": "3080638180a1f987",
+      "type": "release",
+      "title": "Agent SDK (TS) 0.3.198–199: canUseTool gets requestId; shadowing warning",
+      "why": "If you gate tools with canUseTool, .198 now warns when allowedTools or bypassPermissions silently shadow the callback, and .199 adds requestId so out-of-band permission responses can be correlated.",
+      "url": "https://github.com/anthropics/claude-agent-sdk-typescript/releases/tag/v0.3.199",
+      "source": "changelog",
+      "relevance": [
+        "lang:ts"
+      ]
+    },
+    {
+      "id": "0e493a24c469bf09",
+      "type": "release",
+      "title": "Anthropic TS SDK 0.110.0 adds agent-memory beta header",
+      "why": "0.110 lands an agent-memory-2026-07-22 beta header — a new memory surface is being staged in the API; worth watching before you build your own persistence layer.",
+      "url": "https://github.com/anthropics/anthropic-sdk-typescript/releases/tag/sdk-v0.110.0",
+      "source": "changelog",
+      "relevance": [
+        "lang:ts"
+      ]
+    },
+    {
+      "id": "4d3291c25d56323b",
+      "type": "tool",
+      "title": "Willison ships llm-coding-agent 0.1a0",
+      "why": "His LLM library has grown into an agent framework; this 0.1a0 coding agent is a compact, readable reference for what a minimal harness actually needs.",
+      "url": "https://simonwillison.net/2026/Jul/2/llm-coding-agent",
+      "source": "simonwillison.net",
+      "relevance": []
+    },
+    {
+      "id": "78397f033eb7a898",
+      "type": "mcp",
+      "title": "MCP TypeScript SDK 2.0.0-beta.2 dual-publishes CJS + ESM",
+      "why": "Every 2.0-beta package now ships .cjs alongside .mjs — if your MCP server still builds on the 1.x SDK, the 2.0 migration story just got less breaking for CJS consumers.",
+      "url": "https://github.com/modelcontextprotocol/typescript-sdk/releases/tag/%40modelcontextprotocol/server%402.0.0-beta.2",
+      "source": "changelog",
+      "relevance": [
+        "lang:ts"
+      ]
+    },
+    {
+      "id": "80d2225d9c668acb",
+      "type": "skill",
+      "title": "Browser Use 0.13.3: CLI 3.0 and one-command skill install",
+      "why": "New browser-use skill command installs its skill straight into Claude Code, Codex, Cursor and friends — a sign of skills becoming the cross-agent distribution unit.",
+      "url": "https://github.com/browser-use/browser-use/releases/tag/0.13.3",
+      "source": "changelog",
+      "relevance": [
+        "tool:browser-use"
+      ]
+    },
+    {
+      "id": "30397997e549c195",
+      "type": "technique",
+      "title": "Deep cut: agent-skill malware that evades static scanners",
+      "why": "Skills are becoming the cross-agent install unit (see Browser Use above) — this paper shows skill malware slipping past static scans and proposes dynamic detection. Audit what you install; pin what you trust.",
+      "url": "https://arxiv.org/abs/2607.02357v1",
+      "source": "arxiv",
+      "relevance": []
+    }
+  ],
+  "actions": [
+    {
+      "id": "act_2026-07-03_bg-agent-notification-hook",
+      "type": "copy_snippet",
+      "title": "Notification-hook example for background agents (Claude Code ≥2.1.198)",
+      "snippet": "Add to ~/.claude/settings.json to get a macOS notification when a background\nagent finishes or needs input (new Notification hook events in 2.1.198):\n\n{\n  \"hooks\": {\n    \"Notification\": [\n      {\n        \"hooks\": [\n          {\n            \"type\": \"command\",\n            \"command\": \"osascript -e 'display notification \\\"A background agent needs you\\\" with title \\\"Claude Code\\\"'\"\n          }\n        ]\n      }\n    ]\n  }\n}\n\nRemove it with daily-diff rollback, or delete the block by hand.",
+      "dest_hint": "~/.claude/settings.json (paste by hand — this snippet only lands in your snippets dir + clipboard)",
+      "requires": {
+        "tools": [
+          "tool:claude-code"
+        ]
+      },
+      "provenance": {
+        "source_url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.198",
+        "author": "editor:jo",
+        "reviewer": "editor:jo",
+        "published": "2026-07-03T03:16:03.273Z",
+        "review_mode": "self-dogfood"
+      },
+      "schema": "dailydiff.action/v1",
+      "sig": "pKDlsN/WQOiVq0iXoxU05SrKxZi9wsvdcfDG3N/jqSCFpQEByiDQySwdtcWis5aRqz+f6kzqJ1dUzNV17F2TDA=="
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "schema": "dailydiff.feed/v1",
+  "date": "2026-07-02",
+  "published_at": "2026-07-03T05:30:00Z",
+  "items": [
+    {
+      "id": "2026-07-02-x-official-mcp",
+      "type": "tool",
+      "title": "X ships an official hosted MCP server",
+      "why": "Your agent can now query X's API (200+ endpoints) with your own account, via a hosted remote server at api.x.com/mcp — nothing new executes locally, auth is OAuth on first use.",
+      "url": "https://docs.x.com/tools/mcp",
+      "source": "techcrunch",
+      "relevance": [
+        "tool:claude-code"
+      ],
+      "action_id": "act_2026-07-02_add-x-mcp"
+    },
+    {
+      "id": "2026-07-02-x-api-pay-per-use",
+      "type": "release",
+      "title": "X API is pay-per-use for new developers",
+      "why": "The Basic/Pro tiers are legacy-only since February: new signups pay $0.005/post read (2M/mo cap), $0.015/write, $0.20 for posts with links. A 150-account watchlist now costs hundreds, not $5k.",
+      "url": "https://twitterapi.io/blog/x-api-cost-breakdown-2026",
+      "source": "pricing analysis",
+      "relevance": []
+    },
+    {
+      "id": "2026-07-02-grok-slugs-retired",
+      "type": "model",
+      "title": "xAI retired legacy Grok model slugs — requests now route to grok-4.3",
+      "why": "grok-4, grok-4.1-fast and grok-code-fast-1 redirect to grok-4.3 ($1.25/$2.50 per M tokens) since May 15. If any config pins those slugs, you're already on a different model than you think.",
+      "url": "https://x.ai/api",
+      "source": "x.ai",
+      "relevance": []
+    },
+    {
+      "id": "2026-07-02-claude-md-context-budget",
+      "type": "technique",
+      "title": "Editor's note: CLAUDE.md is a context budget, not a wiki",
+      "why": "Every line ships with every session and competes with your actual work for context. Keep it under ~60 lines of per-session instructions; move reference material to docs/ and link it.",
+      "url": "https://www.anthropic.com/engineering/claude-code-best-practices",
+      "source": "editor",
+      "relevance": [
+        "tool:claude-code"
+      ],
+      "action_id": "act_2026-07-02_claude-md-audit"
+    },
+    {
+      "id": "2026-07-02-x-read-cap-sizing",
+      "type": "release",
+      "title": "Sizing note: pay-per-use X reads cap at 2M posts/month",
+      "why": "If you're building an X ingestion pipeline, the cap is the ceiling that matters: 2M reads/mo ≈ 66k posts/day. Above that you're in Enterprise territory (~$42k/mo).",
+      "url": "https://docs.x.com/x-api/fundamentals/rate-limits",
+      "source": "docs.x.com",
+      "relevance": [
+        "topic:x-data-pipelines"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "schema": "dailydiff.action/v1",
+      "id": "act_2026-07-02_add-x-mcp",
+      "type": "add_mcp_server",
+      "title": "Add X's official hosted MCP server to this project",
+      "requires": {
+        "tools": [
+          "tool:claude-code"
+        ]
+      },
+      "server_name": "x-api",
+      "server_config": {
+        "type": "http",
+        "url": "https://api.x.com/mcp"
+      },
+      "target": {
+        "file": "./.mcp.json"
+      },
+      "vetting": {
+        "vetted_on": "2026-07-02",
+        "publisher": "X Corp (official hosted endpoint)",
+        "note": "Announced 2026-06-30. Remote server hosted by X: no code is installed or executed on your machine. It acts with YOUR account's permissions after OAuth — treat write scopes accordingly."
+      },
+      "provenance": {
+        "source_url": "https://docs.x.com/tools/mcp",
+        "author": "editor:jose",
+        "reviewer": "editor:jose",
+        "published": "2026-07-03T05:30:00Z",
+        "review_mode": "self-dogfood"
+      },
+      "sig": "/8cXTNj0frew8CkFCPorTGXH6ijLLkMx2vRIqfDRnYv0OeM3eaCGsuLJhSwXDkuP/0n6RiyEs9Am/7wpQ7gsBg=="
+    },
+    {
+      "schema": "dailydiff.action/v1",
+      "id": "act_2026-07-02_claude-md-audit",
+      "type": "copy_snippet",
+      "title": "CLAUDE.md context-budget audit prompt",
+      "requires": {
+        "tools": [
+          "tool:claude-code"
+        ]
+      },
+      "snippet": "Audit my CLAUDE.md against a 60-line context budget: (1) flag lines that are reference material rather than per-session behavioral instructions; (2) propose the <60-line version; (3) move the rest into docs/ files with one-line links from CLAUDE.md. Show me the before/after diff — don't write anything until I approve.",
+      "dest_hint": "paste into a Claude Code session in any repo that has a CLAUDE.md",
+      "provenance": {
+        "source_url": "https://www.anthropic.com/engineering/claude-code-best-practices",
+        "author": "editor:jose",
+        "reviewer": "editor:jose",
+        "published": "2026-07-03T05:30:00Z",
+        "review_mode": "self-dogfood"
+      },
+      "sig": "VlH7DRf+353GYu6z/xFFGpdtcRCX42WTNl5hNXK97HjZVeqQvfzmD46cm5E9M1ZUOONCiluT1Ts7pWyDxsWLBg=="
+    }
+  ]
+}
