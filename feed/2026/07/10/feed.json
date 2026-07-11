@@ -1,0 +1,72 @@
+{
+  "schema": "dailydiff.feed/v1",
+  "date": "2026-07-10",
+  "published_at": "2026-07-11T03:24:54.897Z",
+  "items": [
+    {
+      "id": "060f4905c5779472",
+      "type": "release",
+      "title": "Claude Code 2.1.206: /cd path suggestions, /doctor learns to trim CLAUDE.md, push auto-allowed in /commit-push-pr",
+      "why": "Point release on the harness you're sitting in; the new /doctor check that flags derivable CLAUDE.md content is worth one run on any long-lived repo.",
+      "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.206",
+      "source": "changelog",
+      "relevance": [
+        "tool:claude-code"
+      ]
+    },
+    {
+      "id": "dbe50087afc5608e",
+      "type": "mcp",
+      "title": "MCP reference servers: dated cut 2026.7.10",
+      "why": "The reference servers ship straight into agent configs — if you pin filesystem/fetch/git, diff this dated release before bumping.",
+      "url": "https://github.com/modelcontextprotocol/servers/releases/tag/2026.7.10",
+      "source": "changelog",
+      "relevance": [
+        "mcp:mcp"
+      ]
+    },
+    {
+      "id": "48aaf379b2a37cb9",
+      "type": "release",
+      "title": "llama.cpp b9949 — five releases this week, Adreno cluster-parallel decode lands",
+      "why": "Local-inference cadence is near-daily again; if you target the server API, smoke-test against the weekly bundle instead of chasing every tag.",
+      "url": "https://github.com/ggml-org/llama.cpp/releases/tag/b9949",
+      "source": "changelog",
+      "relevance": [
+        "tool:llama.cpp"
+      ]
+    },
+    {
+      "id": "f20b8e2caabc8e2a",
+      "type": "release",
+      "title": "OpenHands 1.11.0: agent profiles land on the SaaS backend, repo metadata in traces",
+      "why": "Open-source harness pushing observability — repository metadata on traces is a pattern worth stealing for your own agent telemetry.",
+      "url": "https://github.com/OpenHands/OpenHands/releases/tag/1.11.0",
+      "source": "changelog",
+      "relevance": [
+        "tool:openhands"
+      ]
+    },
+    {
+      "id": "a5c122c8906be3b6",
+      "type": "release",
+      "title": "Gemini CLI crosses 0.50.0: tool-registry discovery, release-verification hardening",
+      "why": "The third harness keeps converging on the same agent-UX patterns — tool discovery via registry is the one to skim.",
+      "url": "https://github.com/google-gemini/gemini-cli/releases/tag/v0.50.0",
+      "source": "changelog",
+      "relevance": [
+        "tool:gemini-cli"
+      ]
+    },
+    {
+      "id": "9dd06ff2acc7e68a",
+      "type": "technique",
+      "title": "Profiling PyTorch attention: guess first, then look",
+      "why": "Deep cut: a disciplined profiling method across math/efficient/flash/cuDNN backends — the 'predict before you trace' habit transfers to any inference-perf work.",
+      "url": "https://huggingface.co/blog/torch-attention-profile",
+      "source": "huggingface blog",
+      "relevance": []
+    }
+  ],
+  "actions": []
+}
