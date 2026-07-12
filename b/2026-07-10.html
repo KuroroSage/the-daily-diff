@@ -8,56 +8,136 @@
 <meta property="og:title" content="The Daily Diff — 2026-07-10">
 <meta property="og:description" content="Claude Code 2.1.206: /cd path suggestions, /doctor learns to trim CLAUDE.md, push auto-allowed in /commit-push-pr — and 5 more items for AI-agent builders. 0 executable.">
 <meta property="og:type" content="article">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://kurorosage.github.io/the-daily-diff/demo.gif">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://kurorosage.github.io/the-daily-diff/demo.gif">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22%230d1117%22%2F%3E%3Ctext%20x%3D%2212%22%20y%3D%2230%22%20font-family%3D%22monospace%22%20font-size%3D%2226%22%20font-weight%3D%22bold%22%20fill%3D%22%233fb950%22%3E%2B%3C%2Ftext%3E%3Ctext%20x%3D%2234%22%20y%3D%2252%22%20font-family%3D%22monospace%22%20font-size%3D%2226%22%20font-weight%3D%22bold%22%20fill%3D%22%23f85149%22%3E-%3C%2Ftext%3E%3C%2Fsvg%3E">
 <style>
-  :root { color-scheme: dark; }
+  :root {
+    color-scheme: light dark;
+    --bg: #0d1117; --bg-raise: #161b22; --line: #21262e;
+    --fg: #e6edf3; --fg-soft: #c9d1d9; --fg-dim: #8b949e;
+    --accent: #3fb950; --accent-line: #238636; --accent-soft: #12261a;
+    --link: #58a6ff; --amber: #d29922;
+    --t-release: #58a6ff; --t-tool: #3fb950; --t-mcp: #bc8cff;
+    --t-technique: #d29922; --t-model: #f0883e;
+    --shadow: 0 8px 28px rgba(0,0,0,.35);
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #fbfcfd; --bg-raise: #f2f4f7; --line: #d8dee6;
+      --fg: #1c2128; --fg-soft: #3a424c; --fg-dim: #667380;
+      --accent: #1a7f37; --accent-line: #1a7f37; --accent-soft: #e7f5eb;
+      --link: #0757ba; --amber: #9a6700;
+      --t-release: #0757ba; --t-tool: #1a7f37; --t-mcp: #6d28c9;
+      --t-technique: #9a6700; --t-model: #b34e00;
+      --shadow: 0 8px 28px rgba(28,33,40,.10);
+    }
+  }
   * { box-sizing: border-box; }
-  body { margin: 0; background: #0d1117; color: #e6edf3;
-         font: 15px/1.55 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
-  a { color: #58a6ff; text-decoration: none; }
-  a:hover { text-decoration: underline; }
-  .wrap { max-width: 760px; margin: 0 auto; padding: 40px 20px 80px; }
-  .hero { margin-bottom: 48px; }
-  .hero h1 { font-size: 26px; margin: 0 0 6px; }
-  .hero .tagline { font-size: 16px; color: #c9d1d9; margin: 0 0 4px; }
-  .hero .sub { font-size: 13px; color: #8b949e; margin: 0 0 18px; }
-  .hero img.demo { width: 100%; border: 1px solid #21262e; border-radius: 10px; display: block; }
-  .hero .cta { margin: 18px 0 0; }
-  .hero .cta a { display: inline-block; padding: 8px 18px; border: 1px solid #238636; border-radius: 8px;
-                 color: #3fb950; font-weight: 600; }
-  .hero .cta a:hover { background: #12261a; text-decoration: none; }
-  .edition-rule { margin: 40px 0 24px; border: 0; border-top: 1px solid #21262e; }
-  header h1 { font-size: 22px; margin: 0 0 2px; }
-  header .date { color: #8b949e; margin: 0 0 4px; }
-  header .tagline { color: #8b949e; font-size: 13px; margin: 0; }
-  .verified { display: inline-block; margin-top: 14px; padding: 3px 10px; border: 1px solid #238636;
-              border-radius: 999px; color: #3fb950; font-size: 12px; }
-  .item { margin: 34px 0; padding-left: 16px; border-left: 2px solid #21262e; }
-  .item h2 { font-size: 16px; margin: 0 0 6px; }
-  .item h2 a { color: #e6edf3; }
-  .num { color: #8b949e; }
-  .tag { font-size: 11px; padding: 1px 7px; border-radius: 4px; border: 1px solid; margin-right: 8px;
-         vertical-align: 2px; letter-spacing: .5px; }
-  .why { margin: 6px 0; color: #c9d1d9; }
-  .src { font-size: 12px; color: #8b949e; }
-  .action { margin: 12px 0 0; padding: 12px 14px; background: #161b22; border: 1px solid #21262e;
-            border-radius: 8px; font-size: 13px; }
-  .action .atitle { color: #d29922; font-weight: 600; }
-  .action .meta { color: #8b949e; margin-top: 6px; }
-  .action .warn { color: #d29922; margin-top: 6px; }
-  .action .how { color: #8b949e; margin-top: 8px; border-top: 1px solid #21262e; padding-top: 8px; }
-  code { background: #161b22; border: 1px solid #21262e; border-radius: 4px; padding: 1px 6px; font-size: 13px; }
-  .install { margin-top: 56px; padding: 18px; background: #161b22; border: 1px solid #21262e; border-radius: 8px; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--fg);
+         font: 15px/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+         -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+  ::selection { background: var(--accent); color: var(--bg); }
+  a { color: var(--link); text-decoration: none; transition: color .15s ease; }
+  a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: clamp(28px, 6vw, 48px) clamp(18px, 4vw, 24px) 96px; }
+
+  .topnav { font-size: 13px; margin-bottom: 28px; color: var(--fg-dim); }
+  .topnav a { color: var(--fg-dim); }
+  .topnav a:hover { color: var(--accent); text-decoration: none; }
+
+  .hero { margin-bottom: 56px; }
+  .hero h1 { font-size: clamp(28px, 6vw, 38px); letter-spacing: -.02em; margin: 0 0 10px; line-height: 1.15; }
+  .hero .tagline { font-size: clamp(15px, 3vw, 17px); color: var(--fg-soft); margin: 0 0 6px; max-width: 56ch; }
+  .hero .sub { font-size: 13px; color: var(--fg-dim); margin: 0 0 22px; }
+  .hero img.demo { width: 100%; aspect-ratio: 1200 / 675; object-fit: cover;
+                   border: 1px solid var(--line); border-radius: 12px; display: block;
+                   box-shadow: var(--shadow); }
+  .hero .cta { margin: 22px 0 0; }
+  .hero .cta a { display: inline-block; padding: 10px 22px; border: 1px solid var(--accent-line);
+                 border-radius: 10px; color: var(--accent); font-weight: 600;
+                 transition: background .18s ease, transform .18s ease, box-shadow .18s ease; }
+  .hero .cta a:hover { background: var(--accent-soft); text-decoration: none;
+                       transform: translateY(-1px); box-shadow: 0 4px 14px rgba(63,185,80,.18); }
+  .hero .cta a:active { transform: translateY(0); }
+  .hero .cta a .arrow { display: inline-block; transition: transform .18s ease; }
+  .hero .cta a:hover .arrow { transform: translateX(3px); }
+
+  .edition-rule { margin: 44px 0 28px; border: 0; border-top: 1px solid var(--line); }
+  header h1 { font-size: clamp(20px, 4.5vw, 24px); letter-spacing: -.01em; margin: 0 0 4px; }
+  header .date { color: var(--fg-dim); margin: 0 0 4px; }
+  header .tagline { color: var(--fg-dim); font-size: 13px; margin: 0; max-width: 56ch; }
+  .verified { display: inline-flex; align-items: center; gap: 6px; margin-top: 16px; padding: 4px 12px;
+              border: 1px solid var(--accent-line); border-radius: 999px; color: var(--accent); font-size: 12px; }
+
+  .item { margin: 38px 0; padding-left: 18px; border-left: 2px solid var(--line);
+          transition: border-color .25s ease; }
+  .item:hover { border-left-color: var(--accent-line); }
+  .item h2 { font-size: 16px; margin: 0 0 7px; line-height: 1.45; }
+  .item h2 a { color: var(--fg); }
+  .item h2 a:hover { color: var(--link); }
+  .num { color: var(--fg-dim); }
+  .tag { display: inline-block; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 5px;
+         margin-right: 8px; vertical-align: 2px; letter-spacing: .06em; color: var(--fg-dim);
+         background: color-mix(in srgb, currentColor 12%, transparent);
+         border: 1px solid color-mix(in srgb, currentColor 35%, transparent); }
+  .tag-release { color: var(--t-release); } .tag-tool { color: var(--t-tool); }
+  .tag-mcp, .tag-skill { color: var(--t-mcp); }
+  .tag-technique { color: var(--t-technique); } .tag-model { color: var(--t-model); }
+  .why { margin: 7px 0; color: var(--fg-soft); max-width: 62ch; }
+  .src { font-size: 12px; color: var(--fg-dim); }
+
+  .action { margin: 14px 0 0; padding: 14px 16px; background: var(--bg-raise);
+            border: 1px solid var(--line); border-left: 3px solid var(--amber);
+            border-radius: 10px; font-size: 13px;
+            transition: transform .18s ease, box-shadow .18s ease; }
+  .action:hover { transform: translateY(-1px); box-shadow: var(--shadow); }
+  .action .atitle { color: var(--amber); font-weight: 600; }
+  .action .meta { color: var(--fg-dim); margin-top: 6px; }
+  .action .warn { color: var(--amber); margin-top: 6px; }
+  .action .how { color: var(--fg-dim); margin-top: 10px; border-top: 1px solid var(--line); padding-top: 10px; }
+
+  code { background: var(--bg-raise); border: 1px solid var(--line); border-radius: 4px; padding: 1px 6px; font-size: 13px; }
+  .install { margin-top: 64px; padding: 20px 22px; background: var(--bg-raise);
+             border: 1px solid var(--line); border-radius: 12px; }
   .install h3 { margin: 0 0 8px; font-size: 14px; }
-  .install p { margin: 6px 0; font-size: 13px; color: #c9d1d9; }
-  footer { margin-top: 40px; color: #8b949e; font-size: 12px; }
-  footer .trust { border-left: 2px solid #238636; padding-left: 12px; margin: 16px 0; }
-  .archive { margin-top: 24px; font-size: 13px; }
-  .archive a { margin-right: 14px; }
-  @media (max-width: 480px) { .wrap { padding: 24px 14px 60px; } }
+  .install p { margin: 6px 0; font-size: 13px; color: var(--fg-soft); }
+  footer { margin-top: 44px; color: var(--fg-dim); font-size: 12px; }
+  footer .trust { border-left: 2px solid var(--accent-line); padding-left: 14px; margin: 18px 0; max-width: 60ch; }
+  .archive { margin-top: 26px; font-size: 13px; }
+  .archive a, .archive span { margin-right: 14px; }
+  .archive span { color: var(--fg-dim); }
+  [id] { scroll-margin-top: 24px; }
+
+  /* Motion: quiet by default, alive on arrival. Every animation sits behind
+     the reduced-motion gate — the product must never be the thing that moves
+     when a reader asked their OS for stillness. */
+  @media (prefers-reduced-motion: no-preference) {
+    .hero, header, .item, .install, footer {
+      animation: rise .5s cubic-bezier(.16, 1, .3, 1) both;
+    }
+    .item:nth-of-type(1) { animation-delay: .06s; }
+    .item:nth-of-type(2) { animation-delay: .11s; }
+    .item:nth-of-type(3) { animation-delay: .16s; }
+    .item:nth-of-type(4) { animation-delay: .21s; }
+    .item:nth-of-type(5) { animation-delay: .26s; }
+    .item:nth-of-type(6) { animation-delay: .31s; }
+    .item:nth-of-type(7) { animation-delay: .36s; }
+    .item:nth-of-type(n+8) { animation-delay: .4s; }
+    .install { animation-delay: .45s; }
+    footer { animation-delay: .5s; }
+    .verified { animation: rise .5s cubic-bezier(.16,1,.3,1) both, glow 1.6s ease .6s 1; }
+  }
+  @keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  @keyframes glow { 0%, 100% { box-shadow: 0 0 0 0 rgba(63,185,80,0); }
+                    40% { box-shadow: 0 0 0 5px rgba(63,185,80,.18); } }
 </style>
 </head>
-<body><div class="wrap">
+<body><div class="wrap"><nav class="topnav"><a href="../index.html">← The Daily Diff</a> · <span>edition archive below</span></nav>
+
 <header>
   <h1>📰 The Daily Diff</h1>
   <p class="date">Friday, July 10, 2026</p>
@@ -65,32 +145,32 @@
   <span class="verified" title="This page was generated only after the edition's Ed25519 signatures verified against the client trust root.">✓ signed edition · 6 items · 0 actions</span>
 </header>
 <article class="item" id="060f4905c5779472">
-<h2><span class="num">1.</span> <span class="tag" style="color:#58a6ff;border-color:#58a6ff">RELEASE</span> <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.206" rel="noopener">Claude Code 2.1.206: /cd path suggestions, /doctor learns to trim CLAUDE.md, push auto-allowed in /commit-push-pr</a></h2>
+<h2><span class="num">1.</span> <span class="tag tag-release">RELEASE</span> <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.206" rel="noopener">Claude Code 2.1.206: /cd path suggestions, /doctor learns to trim CLAUDE.md, push auto-allowed in /commit-push-pr</a></h2>
 <p class="why">Point release on the harness you're sitting in; the new /doctor check that flags derivable CLAUDE.md content is worth one run on any long-lived repo.</p>
 <div class="src">source: <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.206" rel="noopener">github.com</a></div>
 </article>
 <article class="item" id="dbe50087afc5608e">
-<h2><span class="num">2.</span> <span class="tag" style="color:#bc8cff;border-color:#bc8cff">MCP</span> <a href="https://github.com/modelcontextprotocol/servers/releases/tag/2026.7.10" rel="noopener">MCP reference servers: dated cut 2026.7.10</a></h2>
+<h2><span class="num">2.</span> <span class="tag tag-mcp">MCP</span> <a href="https://github.com/modelcontextprotocol/servers/releases/tag/2026.7.10" rel="noopener">MCP reference servers: dated cut 2026.7.10</a></h2>
 <p class="why">The reference servers ship straight into agent configs — if you pin filesystem/fetch/git, diff this dated release before bumping.</p>
 <div class="src">source: <a href="https://github.com/modelcontextprotocol/servers/releases/tag/2026.7.10" rel="noopener">github.com</a></div>
 </article>
 <article class="item" id="48aaf379b2a37cb9">
-<h2><span class="num">3.</span> <span class="tag" style="color:#58a6ff;border-color:#58a6ff">RELEASE</span> <a href="https://github.com/ggml-org/llama.cpp/releases/tag/b9949" rel="noopener">llama.cpp b9949 — five releases this week, Adreno cluster-parallel decode lands</a></h2>
+<h2><span class="num">3.</span> <span class="tag tag-release">RELEASE</span> <a href="https://github.com/ggml-org/llama.cpp/releases/tag/b9949" rel="noopener">llama.cpp b9949 — five releases this week, Adreno cluster-parallel decode lands</a></h2>
 <p class="why">Local-inference cadence is near-daily again; if you target the server API, smoke-test against the weekly bundle instead of chasing every tag.</p>
 <div class="src">source: <a href="https://github.com/ggml-org/llama.cpp/releases/tag/b9949" rel="noopener">github.com</a></div>
 </article>
 <article class="item" id="f20b8e2caabc8e2a">
-<h2><span class="num">4.</span> <span class="tag" style="color:#58a6ff;border-color:#58a6ff">RELEASE</span> <a href="https://github.com/OpenHands/OpenHands/releases/tag/1.11.0" rel="noopener">OpenHands 1.11.0: agent profiles land on the SaaS backend, repo metadata in traces</a></h2>
+<h2><span class="num">4.</span> <span class="tag tag-release">RELEASE</span> <a href="https://github.com/OpenHands/OpenHands/releases/tag/1.11.0" rel="noopener">OpenHands 1.11.0: agent profiles land on the SaaS backend, repo metadata in traces</a></h2>
 <p class="why">Open-source harness pushing observability — repository metadata on traces is a pattern worth stealing for your own agent telemetry.</p>
 <div class="src">source: <a href="https://github.com/OpenHands/OpenHands/releases/tag/1.11.0" rel="noopener">github.com</a></div>
 </article>
 <article class="item" id="a5c122c8906be3b6">
-<h2><span class="num">5.</span> <span class="tag" style="color:#58a6ff;border-color:#58a6ff">RELEASE</span> <a href="https://github.com/google-gemini/gemini-cli/releases/tag/v0.50.0" rel="noopener">Gemini CLI crosses 0.50.0: tool-registry discovery, release-verification hardening</a></h2>
+<h2><span class="num">5.</span> <span class="tag tag-release">RELEASE</span> <a href="https://github.com/google-gemini/gemini-cli/releases/tag/v0.50.0" rel="noopener">Gemini CLI crosses 0.50.0: tool-registry discovery, release-verification hardening</a></h2>
 <p class="why">The third harness keeps converging on the same agent-UX patterns — tool discovery via registry is the one to skim.</p>
 <div class="src">source: <a href="https://github.com/google-gemini/gemini-cli/releases/tag/v0.50.0" rel="noopener">github.com</a></div>
 </article>
 <article class="item" id="9dd06ff2acc7e68a">
-<h2><span class="num">6.</span> <span class="tag" style="color:#d29922;border-color:#d29922">TECHNIQUE</span> <a href="https://huggingface.co/blog/torch-attention-profile" rel="noopener">Profiling PyTorch attention: guess first, then look</a></h2>
+<h2><span class="num">6.</span> <span class="tag tag-technique">TECHNIQUE</span> <a href="https://huggingface.co/blog/torch-attention-profile" rel="noopener">Profiling PyTorch attention: guess first, then look</a></h2>
 <p class="why">Deep cut: a disciplined profiling method across math/efficient/flash/cuDNN backends — the 'predict before you trace' habit transfers to any inference-perf work.</p>
 <div class="src">source: <a href="https://huggingface.co/blog/torch-attention-profile" rel="noopener">huggingface.co</a></div>
 </article>
